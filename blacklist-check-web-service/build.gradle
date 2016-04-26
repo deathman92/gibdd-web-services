@@ -1,0 +1,42 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
+
+jar {
+	baseName = 'blacklist-check-web-service'
+	version = '1.0'
+}
+
+springBoot {
+	mainClass = 'ru.vlsu.gibdd.webservice.blacklist.Application'
+}
+
+jaxb {
+	xsdDir = "${project.name}/src/main/resources/schema"
+	bindingsDir = "${project.name}/src/main/resources/schema/binding"
+	bindings = ["*.xjb"]
+	episodesDir = "${project.name}/src/main/resources/schema/episode"
+	xjc {
+		taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
+		generatePackage    = "ru.vlsu.gibdd.webservice.blacklist.io"
+		args               = ["-Xannotate","-Xnamespace-prefix","-Xequals","-XhashCode","-XtoString"]
+	}
+}
+
+flyway {
+	user = 'sa'
+	password = 'sa'
+	url = 'jdbc:h2:file:./data/blacklistdb;DB_CLOSE_ON_EXIT=FALSE'
+	locations = ["classpath:db/sql/h2"]
+}
+
+dependencies {
+	compile project(':web-services-common')
+}

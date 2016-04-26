@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vlsu.ru/schema/registration"
+    targetNamespace="http://vlsu.ru/schema/registration" elementFormDefault="qualified"
+    xmlns:ow="http://vlsu.ru/schema/owner" xmlns:ve="http://vlsu.ru/schema/vehicle">
+
+    <xs:import namespace="http://vlsu.ru/schema/vehicle" schemaLocation="import/VehiclePassType.xsd"/>
+    <xs:import namespace="http://vlsu.ru/schema/owner" schemaLocation="OwnerType.xsd"/>
+    <xs:complexType name="RegistrationCertificate">
+        <xs:all>
+            <xs:element name="registration_number">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z][0-9]{3}[A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="vehicle" type="ve:VehiclePass"/>
+            <xs:element name="owner" type="ow:Owner"/>
+            <xs:element name="issue_place" type="xs:string"/>
+            <xs:element name="issue_date" type="xs:date"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vlsu.ru/schema/citizen"
+    targetNamespace="http://vlsu.ru/schema/citizen" elementFormDefault="qualified">
+
+    <xs:complexType name="Citizen">
+        <xs:all>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="middlename" nillable="true" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string"/>
+            <xs:element name="gender" type="Gender"/>
+            <xs:element name="birthday" type="xs:date"/>
+            <xs:element name="birth_place" type="xs:string"/>
+            <xs:element name="passport" type="Passport"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:simpleType name="Gender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="male"/>
+            <xs:enumeration value="female"/>
+            <xs:enumeration value="other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Passport">
+        <xs:all>
+            <xs:element name="series" nillable="false">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="4"/>
+                        <xs:pattern value="[0-9]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="number">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="6"/>
+                        <xs:pattern value="[0-9]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="issue_date" type="xs:date"/>
+            <xs:element name="issued_by" type="xs:string"/>
+            <xs:element name="registration" type="Registration"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="Registration">
+        <xs:all>
+            <xs:element name="region" type="xs:string"/>
+            <xs:element name="district" nillable="true" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="date" type="xs:date"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

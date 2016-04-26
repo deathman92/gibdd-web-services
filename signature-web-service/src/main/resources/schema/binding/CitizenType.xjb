@@ -1,0 +1,20 @@
+<bindings version="2.1"
+              xmlns="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <bindings schemaLocation="../import/CitizenType.xsd" node="//xs:schema">
+        <bindings node="//xs:complexType[@name='Citizen']">
+            <class ref="ru.vlsu.gibdd.webservice.common.io.CitizenIo"/>
+        </bindings>
+        <bindings node="//xs:simpleType[@name='Gender']">
+            <typesafeEnumClass ref="ru.vlsu.gibdd.webservice.common.io.GenderIo"/>
+        </bindings>
+        <bindings node="//xs:complexType[@name='Passport']">
+            <class ref="ru.vlsu.gibdd.webservice.common.io.PassportIo"/>
+        </bindings>
+        <bindings node="//xs:complexType[@name='Registration']">
+            <class ref="ru.vlsu.gibdd.webservice.common.io.RegistrationIo"/>
+        </bindings>
+    </bindings>
+
+</bindings>

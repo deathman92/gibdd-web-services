@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vlsu.ru/schema/owner"
+    targetNamespace="http://vlsu.ru/schema/owner" elementFormDefault="qualified">
+
+    <xs:complexType name="Owner">
+        <xs:all>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="middlename" nillable="true" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string"/>
+            <xs:element name="region" type="xs:string"/>
+            <xs:element name="district" nillable="true" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

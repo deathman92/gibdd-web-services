@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vlsu.ru/signature"
+    targetNamespace="http://vlsu.ru/signature" elementFormDefault="qualified"
+    xmlns:ci="http://vlsu.ru/schema/citizen" xmlns:ve="http://vlsu.ru/schema/vehicle">
+
+    <xs:import namespace="http://vlsu.ru/schema/citizen" schemaLocation="import/CitizenType.xsd"/>
+    <xs:import namespace="http://vlsu.ru/schema/vehicle" schemaLocation="import/VehiclePassType.xsd"/>
+
+    <xs:element name="GenerateSignatureRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="citizen" type="ci:Citizen"/>
+                <xs:element name="vehicle" type="ve:VehiclePass"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GenerateSignatureResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="signatue" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VerifySignatureRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="signature" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VerifySignatureResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="result" type="xs:boolean"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

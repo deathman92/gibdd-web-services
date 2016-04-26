@@ -1,0 +1,16 @@
+jar {
+    baseName = 'web-services-common'
+    version = '1.0'
+}
+
+jaxb {
+    xsdDir = "${project.name}/src/main/resources/schema"
+    bindingsDir = "${project.name}/src/main/resources/schema/binding"
+    bindings = ["*.xjb"]
+    episodesDir = "${project.name}/src/main/resources/schema/episode"
+    xjc {
+        taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
+        generatePackage    = "ru.vlsu.gibdd.webservice.common.io"
+        args               = ["-Xannotate","-Xnamespace-prefix","-Xequals","-XhashCode","-XtoString"]
+    }
+}

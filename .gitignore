@@ -1,0 +1,12 @@
+*.iml
+.idea/
+*.ipr
+*.iws
+*.jar
+*.war
+*.ear
+.gradle
+!gradle-wrapper.jar
+*/build/
+*/data/
+*/logs/

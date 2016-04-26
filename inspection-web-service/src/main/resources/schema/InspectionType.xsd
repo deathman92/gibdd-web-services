@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vlsu.ru/schema/inspection"
+    targetNamespace="http://vlsu.ru/schema/inspection" elementFormDefault="qualified"
+    xmlns:ve="http://vlsu.ru/schema/vehicle">
+
+    <xs:import namespace="http://vlsu.ru/schema/vehicle" schemaLocation="import/VehiclePassType.xsd"/>
+
+    <xs:complexType name="Inspection">
+        <xs:all>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="inspector" type="xs:string"/>
+            <xs:element name="vehicle" type="ve:VehiclePass"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

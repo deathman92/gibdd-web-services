@@ -1,0 +1,19 @@
+<bindings version="2.1"
+              xmlns="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:namespace="http://jaxb2-commons.dev.java.net/namespace-prefix">
+
+    <bindings schemaLocation="../RegistrationCertificateType.xsd" node="//xs:schema">
+        <schemaBindings>
+            <nameXmlTransform>
+                <typeName suffix="Io"/>
+                <anonymousTypeName suffix="Io"/>
+                <elementName suffix="Io" />
+            </nameXmlTransform>
+        </schemaBindings>
+        <bindings>
+            <namespace:prefix name=""/>
+        </bindings>
+    </bindings>
+
+</bindings>

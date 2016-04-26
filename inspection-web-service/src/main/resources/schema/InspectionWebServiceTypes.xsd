@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://vlsu.ru/inspection"
+    xmlns:ve="http://vlsu.ru/schema/vehicle" xmlns:in="http://vlsu.ru/schema/inspection">
+    <xs:import namespace="http://vlsu.ru/schema/vehicle" schemaLocation="import/VehiclePassType.xsd"/>
+    <xs:import namespace="http://vlsu.ru/schema/inspection" schemaLocation="InspectionType.xsd"/>
+
+    <xs:element name="AddInspectionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="inspector" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" name="vehicle_pass_list" type="ve:VehiclePass"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AddInspectionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="inspection_list" type="in:Inspection"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CheckInspectionRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="vehicle" type="ve:VehiclePass"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CheckInspectionResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="result" type="xs:boolean"/>
+                <xs:element name="vehicle" type="ve:VehiclePass"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CheckInspectionFault">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="message" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

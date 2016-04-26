@@ -1,0 +1,19 @@
+<bindings version="2.1"
+          xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+
+    <globalBindings generateElementProperty="false"
+                    collectionType="java.util.ArrayList"
+                    localScoping="toplevel">
+        <xjc:serializable />
+        <xjc:superClass name="ru.vlsu.gibdd.webservice.common.io.AbstractIo" />
+        <javaType name="java.time.LocalDate" xmlType="xs:date"
+                  parseMethod="ru.vlsu.gibdd.webservice.common.util.DatatypeIoConverterUtils.parseXSDDate"
+                  printMethod="ru.vlsu.gibdd.webservice.common.util.DatatypeIoConverterUtils.printXSDDate"/>
+        <javaType name="java.time.Year" xmlType="xs:gYear"
+                  parseMethod="ru.vlsu.gibdd.webservice.common.util.DatatypeIoConverterUtils.parseXSDYear"
+                  printMethod="ru.vlsu.gibdd.webservice.common.util.DatatypeIoConverterUtils.printXSDYear"/>
+    </globalBindings>
+
+</bindings>

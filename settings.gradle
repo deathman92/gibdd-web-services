@@ -1,0 +1,7 @@
+rootProject.name = 'gibdd-web-services'
+include 'blacklist-check-web-service'
+include 'register-vehicle-web-service'
+include 'signature-web-service'
+include 'inspection-web-service'
+include 'web-services-common'
+

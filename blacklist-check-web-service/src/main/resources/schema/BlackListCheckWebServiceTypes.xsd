@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://vlsu.ru/blacklistcheck" xmlns:ve="http://vlsu.ru/schema/vehicle"
+    xmlns:ci="http://vlsu.ru/schema/citizen" xmlns:ns="http://vlsu.ru/blacklistcheck">
+    <xs:import namespace="http://vlsu.ru/schema/citizen" schemaLocation="import/CitizenType.xsd"/>
+    <xs:import namespace="http://vlsu.ru/schema/vehicle" schemaLocation="import/VehiclePassType.xsd"/>
+
+    <xs:element name="CheckCitizenRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="citizen" type="ci:Citizen"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CheckCitizenResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="result" type="ns:CheckResult"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CheckVehicleRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="vehicle_pass" type="ve:VehiclePass"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CheckVehicleResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="result" type="ns:CheckResult"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CheckResult">
+        <xs:sequence>
+            <xs:element name="result" type="xs:boolean"/>
+            <xs:element name="messages" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
