@@ -6,12 +6,13 @@ buildscript {
 	}
 }
 
+apply plugin: 'war'
 apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
 
-jar {
-	baseName = 'blacklist-check-web-service'
-	version = '1.0'
+war {
+    baseName = 'blacklist-check-web-service'
+    version = '1.0'
 }
 
 springBoot {
@@ -37,6 +38,11 @@ flyway {
 	locations = ["classpath:db/sql/h2"]
 }
 
+configurations {
+    providedRuntime
+}
+
 dependencies {
 	compile project(':web-services-common')
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
