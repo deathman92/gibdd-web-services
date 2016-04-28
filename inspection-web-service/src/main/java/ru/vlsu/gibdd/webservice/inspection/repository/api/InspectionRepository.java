@@ -11,5 +11,5 @@ import ru.vlsu.gibdd.webservice.inspection.domain.Inspection;
 @Repository
 public interface InspectionRepository extends JpaRepository<Inspection, Long> {
 
-    Inspection findByVehicleVin(String vin);
+    Inspection findOneByVehicleVin(String vin);
 }

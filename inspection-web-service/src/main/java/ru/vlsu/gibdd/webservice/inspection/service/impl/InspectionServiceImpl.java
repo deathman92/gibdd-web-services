@@ -2,11 +2,11 @@ package ru.vlsu.gibdd.webservice.inspection.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.vlsu.gibdd.webservice.common.domain.VehiclePass;
 import ru.vlsu.gibdd.webservice.common.io.VehiclePassIo;
 import ru.vlsu.gibdd.webservice.common.repository.api.VehiclePassRepository;
 import ru.vlsu.gibdd.webservice.common.service.api.ConverterService;
-import ru.vlsu.gibdd.webservice.common.service.impl.IoConverterServiceImpl;
 import ru.vlsu.gibdd.webservice.inspection.domain.Inspection;
 import ru.vlsu.gibdd.webservice.inspection.exception.CheckInspectionException;
 import ru.vlsu.gibdd.webservice.inspection.io.*;
@@ -31,6 +31,7 @@ public class InspectionServiceImpl implements InspectionService {
     private ConverterService ioConverterService;
 
     @Override
+    @Transactional
     public AddInspectionResponseIo addInspection(AddInspectionRequestIo request) {
         List<VehiclePass> vehicles = ioConverterService.convertList(request.getVehiclePassList(), VehiclePass.class);
         List<Inspection> inspections = new ArrayList<>();
@@ -52,9 +53,10 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CheckInspectionResponseIo checkInspection(CheckInspectionRequestIo request) throws CheckInspectionException {
         VehiclePass vehicle = ioConverterService.convert(request.getVehicle(), VehiclePass.class);
-        Inspection inspection = inspectionRepository.findByVehicleVin(vehicle.getVin());
+        Inspection inspection = inspectionRepository.findOneByVehicleVin(vehicle.getVin());
         if (inspection == null) {
             throw new CheckInspectionException("Карта осмотра ТС " + vehicle.getVin() + " не найдена.");
         }

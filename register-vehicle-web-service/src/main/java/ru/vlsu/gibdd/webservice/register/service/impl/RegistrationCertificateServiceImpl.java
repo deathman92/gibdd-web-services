@@ -3,6 +3,7 @@ package ru.vlsu.gibdd.webservice.register.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.vlsu.gibdd.webservice.common.domain.VehiclePass;
 import ru.vlsu.gibdd.webservice.common.repository.api.VehiclePassRepository;
 import ru.vlsu.gibdd.webservice.common.service.api.ConverterService;
@@ -38,6 +39,7 @@ public class RegistrationCertificateServiceImpl implements RegistrationCertifica
 
 
     @Override
+    @Transactional(readOnly = true)
     public FindRegistrationCertificateResponseIo findRegistrationCertificate(FindRegistrationCertificateRequestIo request) {
         FindRegistrationCertificateResponseIo response = new FindRegistrationCertificateResponseIo();
         Owner owner = ownerRepository.findOwner(converterService.convert(request.getCitizen(), Owner.class));
@@ -56,6 +58,7 @@ public class RegistrationCertificateServiceImpl implements RegistrationCertifica
     }
 
     @Override
+    @Transactional
     public RegisterVehicleResponseIo createRegistrationCertificate(RegisterVehicleRequestIo request) {
         RegisterVehicleResponseIo response = new RegisterVehicleResponseIo();
         Owner owner = converterService.convert(request.getCitizen(), Owner.class);

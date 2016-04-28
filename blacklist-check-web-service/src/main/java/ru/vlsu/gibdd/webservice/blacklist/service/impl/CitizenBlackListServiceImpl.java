@@ -31,7 +31,7 @@ public class CitizenBlackListServiceImpl implements CitizenBlackListService {
     private CitizenRepository citizenRepository;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public CheckResultIo checkCitizen(CitizenIo citizenIo) {
         Citizen citizen = converterService.convert(citizenIo, Citizen.class);
         Citizen inCitizen = citizenRepository.findByPassport(citizen.getPassport());

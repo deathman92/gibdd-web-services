@@ -2,6 +2,7 @@ package ru.vlsu.gibdd.webservice.signature.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.vlsu.gibdd.webservice.signature.domain.Signature;
 import ru.vlsu.gibdd.webservice.signature.io.GenerateSignatureRequestIo;
 import ru.vlsu.gibdd.webservice.signature.io.GenerateSignatureResponseIo;
@@ -25,6 +26,7 @@ public class SignatureServiceImpl implements SignatureService {
     private SignatureRepository signatureRepository;
 
     @Override
+    @Transactional
     public GenerateSignatureResponseIo createSignature(GenerateSignatureRequestIo request) {
         Signature signature = new Signature();
         BigInteger hash = BigInteger.valueOf(request.hashCode() + Instant.now().hashCode());
@@ -36,6 +38,7 @@ public class SignatureServiceImpl implements SignatureService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public VerifySignatureResponseIo verifySignature(VerifySignatureRequestIo request) {
         VerifySignatureResponseIo response = new VerifySignatureResponseIo();
         boolean result = false;
