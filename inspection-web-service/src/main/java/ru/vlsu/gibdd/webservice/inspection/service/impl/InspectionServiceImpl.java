@@ -56,7 +56,7 @@ public class InspectionServiceImpl implements InspectionService {
     @Transactional(readOnly = true)
     public CheckInspectionResponseIo checkInspection(CheckInspectionRequestIo request) throws CheckInspectionException {
         VehiclePass vehicle = ioConverterService.convert(request.getVehicle(), VehiclePass.class);
-        Inspection inspection = inspectionRepository.findOneByVehicleVin(vehicle.getVin());
+        Inspection inspection = inspectionRepository.findFirstByVehicleVinOrderByDateDesc(vehicle.getVin());
         if (inspection == null) {
             throw new CheckInspectionException("Карта осмотра ТС " + vehicle.getVin() + " не найдена.");
         }

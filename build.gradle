@@ -73,7 +73,7 @@ subprojects {
         testCompile("org.springframework.boot:spring-boot-starter-test")
         testCompile("org.springframework.ws:spring-ws-test:2.0.5.RELEASE")
 
-        optional("org.springframework.boot:spring-boot-devtools")
+        compile("org.springframework.boot:spring-boot-devtools")
 
         jaxb("com.sun.xml.bind:jaxb-xjc:2.2.7-b41")
         jaxb("com.sun.xml.bind:jaxb-impl:2.2.7-b41")

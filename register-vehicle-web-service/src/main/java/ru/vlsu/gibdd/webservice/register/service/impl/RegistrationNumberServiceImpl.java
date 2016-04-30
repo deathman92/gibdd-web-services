@@ -13,7 +13,7 @@ import java.util.Random;
 public class RegistrationNumberServiceImpl implements RegistrationNumberService {
 
     private final String FORMAT = "%d%s%s%s%d%d";
-    private final String[] LETTERS = {"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"};
+    private final String[] LETTERS = {"A", "B", "E", "K", "M", "H", "O", "P", "C", "T", "Y", "X"};
 
     @Override
     public String getNumber() {
