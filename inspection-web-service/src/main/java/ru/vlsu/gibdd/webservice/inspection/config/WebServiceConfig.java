@@ -33,7 +33,7 @@ import java.util.Properties;
 public class WebServiceConfig extends WsConfigurerAdapter {
 
     public static final String NAMESPACE_URI = "http://vlsu.ru/inspection";
-    private static final String PORT_TYPE_NAME = "Signature";
+    private static final String PORT_TYPE_NAME = "Inspection";
     // Order of files is important! XSDs must be listed in order of increasing dependencies
     private static final String[] SCHEMA_LOCATIONS = {  "schema/import/VehiclePassType.xsd",
                                                         "schema/InspectionType.xsd",

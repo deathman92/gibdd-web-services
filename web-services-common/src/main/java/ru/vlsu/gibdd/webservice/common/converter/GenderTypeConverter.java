@@ -15,7 +15,7 @@ public class GenderTypeConverter implements AttributeConverter<Citizen.Gender, S
         if (attribute == null) {
             return null;
         }
-        return attribute.value();
+        return attribute.getValue();
     }
 
     @Override

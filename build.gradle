@@ -70,6 +70,8 @@ subprojects {
         testCompile("org.springframework.boot:spring-boot-starter-test")
         testCompile("org.springframework.ws:spring-ws-test:2.0.5.RELEASE")
 
+        provided("org.projectlombok:lombok:1.16.8")
+
         compile("org.springframework.boot:spring-boot-devtools")
 
         jaxb("com.sun.xml.bind:jaxb-xjc:2.2.7-b41")

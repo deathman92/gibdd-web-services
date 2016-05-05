@@ -1,5 +1,6 @@
 package ru.vlsu.gibdd.webservice.inspection.exception;
 
+import lombok.Getter;
 import ru.vlsu.gibdd.webservice.inspection.io.CheckInspectionFaultIo;
 
 /**
@@ -8,6 +9,7 @@ import ru.vlsu.gibdd.webservice.inspection.io.CheckInspectionFaultIo;
  */
 public class CheckInspectionException extends Exception {
 
+    @Getter
     private CheckInspectionFaultIo fault;
 
     public CheckInspectionException(String message) {
@@ -15,9 +17,5 @@ public class CheckInspectionException extends Exception {
         CheckInspectionFaultIo fault = new CheckInspectionFaultIo();
         fault.setMessage(message);
         this.fault = fault;
-    }
-
-    public CheckInspectionFaultIo getFault() {
-        return fault;
     }
 }

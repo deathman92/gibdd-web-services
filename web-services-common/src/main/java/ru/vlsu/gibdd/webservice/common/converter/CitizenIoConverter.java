@@ -23,7 +23,7 @@ public class CitizenIoConverter extends AbstractIoConverter<Citizen, CitizenIo> 
         target.setBirthday(source.getBirthday());
         target.setBirthPlace(source.getBirthPlace());
         if (source.getGender() != null) {
-            target.setGender(GenderIo.fromValue(source.getGender().value()));
+            target.setGender(GenderIo.fromValue(source.getGender().getValue()));
         }
         target.setPassport(getConverterService().convert(source.getPassport(), PassportIo.class));
         return target;
