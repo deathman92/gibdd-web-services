@@ -1,6 +1,7 @@
 package ru.vlsu.gibdd.webservice.register.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.vlsu.gibdd.webservice.register.domain.Owner;
 import ru.vlsu.gibdd.webservice.register.repository.api.OwnerRepositoryCustom;
 
@@ -11,6 +12,7 @@ import javax.persistence.Query;
  * @author Victor Zhivotikov
  * @since 25.04.2016
  */
+@Repository
 public class OwnerRepositoryImpl implements OwnerRepositoryCustom {
 
     @Autowired

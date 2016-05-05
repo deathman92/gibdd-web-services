@@ -1,6 +1,7 @@
 package ru.vlsu.gibdd.webservice.common.repository.api;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,8 @@ public interface CitizenRepository extends JpaRepository<Citizen, Long> {
 
     @Cacheable
     Citizen findByPassport(Passport passport);
+
+    @Override
+    @CachePut
+    Citizen save(Citizen citizen);
 }

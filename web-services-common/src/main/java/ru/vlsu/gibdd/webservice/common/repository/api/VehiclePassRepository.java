@@ -1,9 +1,12 @@
 package ru.vlsu.gibdd.webservice.common.repository.api;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ru.vlsu.gibdd.webservice.common.domain.Citizen;
 import ru.vlsu.gibdd.webservice.common.domain.VehiclePass;
 
 /**
@@ -16,4 +19,8 @@ public interface VehiclePassRepository extends JpaRepository<VehiclePass, Long> 
 
     @Cacheable
     VehiclePass findByVin(String vin);
+
+    @Override
+    @CachePut
+    VehiclePass save(VehiclePass vehiclePass);
 }

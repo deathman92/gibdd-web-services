@@ -30,16 +30,13 @@ ext['hibernate.version'] = hibernateVersion
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
-
-    group 'ru.vlsu.gibdd'
-    version '1.0.0'
-}
-
-configure(allprojects) {
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
     apply plugin: 'propdeps-eclipse'
+
+    group 'ru.vlsu.gibdd'
+    version '1.0.0'
 }
 
 subprojects {
