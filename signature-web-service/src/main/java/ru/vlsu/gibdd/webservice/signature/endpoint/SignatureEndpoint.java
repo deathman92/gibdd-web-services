@@ -1,5 +1,6 @@
 package ru.vlsu.gibdd.webservice.signature.endpoint;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,8 @@ import ru.vlsu.gibdd.webservice.signature.service.api.SignatureService;
  * @since 01.04.2016
  */
 @Endpoint
+@Slf4j
 public class SignatureEndpoint {
-
-    private static final Logger logger = LoggerFactory.getLogger(SignatureEndpoint.class);
 
     @Autowired
     private SignatureService signatureService;
@@ -29,18 +29,18 @@ public class SignatureEndpoint {
     @PayloadRoot(namespace = WebServiceConfig.NAMESPACE_URI, localPart = "GenerateSignatureRequest")
     @ResponsePayload
     public GenerateSignatureResponseIo handle(@RequestPayload GenerateSignatureRequestIo request) {
-        logger.info("Handle generateSignature request: " + request);
+        log.info("Handle generateSignature request: " + request);
         GenerateSignatureResponseIo response = signatureService.createSignature(request);
-        logger.info("Send back generateSignature response: " + response);
+        log.info("Send back generateSignature response: " + response);
         return response;
     }
 
     @PayloadRoot(namespace = WebServiceConfig.NAMESPACE_URI, localPart = "VerifySignatureRequest")
     @ResponsePayload
     public VerifySignatureResponseIo handle(@RequestPayload VerifySignatureRequestIo request) {
-        logger.info("Handle verifySignature request: " + request);
+        log.info("Handle verifySignature request: " + request);
         VerifySignatureResponseIo response = signatureService.verifySignature(request);
-        logger.info("Send back verifySignature response: " + response);
+        log.info("Send back verifySignature response: " + response);
         return response;
     }
 }

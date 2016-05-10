@@ -1,19 +1,21 @@
 package ru.vlsu.gibdd.webservice.common.converter;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import ru.vlsu.gibdd.webservice.common.domain.Registration;
-import ru.vlsu.gibdd.webservice.common.annotation.IoConverter;
 import ru.vlsu.gibdd.webservice.common.io.RegistrationIo;
 
 /**
  * @author Victor Zhivotikov
  * @since 01.04.2016
  */
-@IoConverter
+@SuppressWarnings("Duplicates")
+@Component
+@Qualifier("ioConverter")
 public class RegistrationIoConverter extends AbstractIoConverter<Registration, RegistrationIo> {
 
     @Override
-    protected RegistrationIo convert(Registration source) {
-        RegistrationIo target = new RegistrationIo();
+    protected RegistrationIo convert(Registration source, RegistrationIo target) {
         target.setRegion(source.getRegion());
         target.setDistrict(source.getDistrict());
         target.setCity(source.getCity());
@@ -23,8 +25,7 @@ public class RegistrationIoConverter extends AbstractIoConverter<Registration, R
     }
 
     @Override
-    protected Registration convertBack(RegistrationIo source) {
-        Registration target = new Registration();
+    protected Registration convertBack(RegistrationIo source, Registration target) {
         target.setRegion(source.getRegion());
         target.setDistrict(source.getDistrict());
         target.setCity(source.getCity());

@@ -1,5 +1,6 @@
 package ru.vlsu.gibdd.webservice.register.endpoint;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,14 @@ import ru.vlsu.gibdd.webservice.register.io.FindRegistrationCertificateResponseI
 import ru.vlsu.gibdd.webservice.register.io.RegisterVehicleRequestIo;
 import ru.vlsu.gibdd.webservice.register.io.RegisterVehicleResponseIo;
 import ru.vlsu.gibdd.webservice.register.service.api.RegistrationCertificateService;
-import ru.vlsu.gibdd.webservice.register.service.impl.RegistrationCertificateServiceImpl;
 
 /**
  * @author Victor Zhivotikov
  * @since 01.04.2016
  */
 @Endpoint
+@Slf4j
 public class RegisterVehicleEndpoint {
-
-    private static final Logger logger = LoggerFactory.getLogger(RegisterVehicleEndpoint.class);
 
     @Autowired
     private RegistrationCertificateService certificateService;
@@ -30,18 +29,18 @@ public class RegisterVehicleEndpoint {
     @PayloadRoot(namespace = WebServiceConfig.NAMESPACE_URI, localPart = "RegisterVehicleRequest")
     @ResponsePayload
     public RegisterVehicleResponseIo handle(@RequestPayload RegisterVehicleRequestIo request) {
-        logger.info("Handle registerVehicle request: " + request);
+        log.info("Handle registerVehicle request: " + request);
         RegisterVehicleResponseIo response = certificateService.createRegistrationCertificate(request);
-        logger.info("Send back registerVehicle response: " + response);
+        log.info("Send back registerVehicle response: " + response);
         return response;
     }
 
     @PayloadRoot(namespace = WebServiceConfig.NAMESPACE_URI, localPart = "FindRegistrationCertificateRequest")
     @ResponsePayload
     public FindRegistrationCertificateResponseIo handle(@RequestPayload FindRegistrationCertificateRequestIo request) {
-        logger.info("Handle findRegistrationCertificate request: " + request);
+        log.info("Handle findRegistrationCertificate request: " + request);
         FindRegistrationCertificateResponseIo response = certificateService.findRegistrationCertificate(request);
-        logger.info("Send back findRegistrationCertificate response: " + response);
+        log.info("Send back findRegistrationCertificate response: " + response);
         return response;
     }
 }

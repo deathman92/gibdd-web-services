@@ -1,5 +1,6 @@
 package ru.vlsu.gibdd.webservice.common.converter;
 
+import lombok.SneakyThrows;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.GenericConverter;
 
@@ -35,18 +36,19 @@ public abstract class AbstractTwoWayConverter<S, T> implements GenericConverter 
 
     @Override
     @SuppressWarnings("unchecked")
+    @SneakyThrows
     public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
         if (source == null) {
             return null;
         }
         if (classOfS.equals(sourceType.getType())) {
-            return convert((S) source);
+            return convert((S) source, classOfT.newInstance());
         } else {
-            return convertBack((T) source);
+            return convertBack((T) source, classOfS.newInstance());
         }
     }
 
-    protected abstract T convert(S source);
+    protected abstract T convert(S source, T target);
 
-    protected abstract S convertBack(T source);
+    protected abstract S convertBack(T source, S target);
 }

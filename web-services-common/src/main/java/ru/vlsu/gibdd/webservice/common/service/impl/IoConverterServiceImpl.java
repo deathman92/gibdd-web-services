@@ -25,10 +25,10 @@ import java.util.Set;
 public class IoConverterServiceImpl extends GenericConversionService implements ConverterService {
 
     @Autowired(required = false)
-    @Qualifier("io")
+    @Qualifier("ioConverter")
     private List<Converter> converters;
     @Autowired(required = false)
-    @Qualifier("io")
+    @Qualifier("ioConverter")
     private List<GenericConverter> genericConverters;
 
     @PostConstruct

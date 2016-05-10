@@ -1,6 +1,7 @@
 package ru.vlsu.gibdd.webservice.register.converter;
 
-import ru.vlsu.gibdd.webservice.common.annotation.IoConverter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import ru.vlsu.gibdd.webservice.common.converter.AbstractIoConverter;
 import ru.vlsu.gibdd.webservice.register.domain.Owner;
 import ru.vlsu.gibdd.webservice.register.io.OwnerIo;
@@ -9,12 +10,13 @@ import ru.vlsu.gibdd.webservice.register.io.OwnerIo;
  * @author Victor Zhivotikov
  * @since 25.04.2016
  */
-@IoConverter
+@SuppressWarnings("Duplicates")
+@Component
+@Qualifier("ioConverter")
 public class OwnerIoConverter extends AbstractIoConverter<Owner, OwnerIo> {
 
     @Override
-    protected OwnerIo convert(Owner source) {
-        OwnerIo target = new OwnerIo();
+    protected OwnerIo convert(Owner source, OwnerIo target) {
         target.setFirstname(source.getFirstname());
         target.setMiddlename(source.getMiddlename());
         target.setLastname(source.getLastname());
@@ -26,8 +28,7 @@ public class OwnerIoConverter extends AbstractIoConverter<Owner, OwnerIo> {
     }
 
     @Override
-    protected Owner convertBack(OwnerIo source) {
-        Owner target = new Owner();
+    protected Owner convertBack(OwnerIo source, Owner target) {
         target.setFirstname(source.getFirstname());
         target.setMiddlename(source.getMiddlename());
         target.setLastname(source.getLastname());

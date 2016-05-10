@@ -1,7 +1,8 @@
 package ru.vlsu.gibdd.webservice.register.converter;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;
-import ru.vlsu.gibdd.webservice.common.annotation.IoConverter;
+import org.springframework.stereotype.Component;
 import ru.vlsu.gibdd.webservice.common.io.CitizenIo;
 import ru.vlsu.gibdd.webservice.register.domain.Owner;
 
@@ -9,8 +10,9 @@ import ru.vlsu.gibdd.webservice.register.domain.Owner;
  * @author Victor Zhivotikov
  * @since 25.04.2016
  */
-@IoConverter
-public class CitizenIoToOwnerConverter implements Converter<CitizenIo, Owner>{
+@Component
+@Qualifier("ioConverter")
+public class CitizenIoToOwnerConverter implements Converter<CitizenIo, Owner> {
 
     @Override
     public Owner convert(CitizenIo source) {

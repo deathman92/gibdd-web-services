@@ -1,7 +1,8 @@
 package ru.vlsu.gibdd.webservice.common.converter;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import ru.vlsu.gibdd.webservice.common.domain.VehiclePass;
-import ru.vlsu.gibdd.webservice.common.annotation.IoConverter;
 import ru.vlsu.gibdd.webservice.common.io.CategoryIo;
 import ru.vlsu.gibdd.webservice.common.io.VehiclePassIo;
 
@@ -9,12 +10,12 @@ import ru.vlsu.gibdd.webservice.common.io.VehiclePassIo;
  * @author Victor Zhivotikov
  * @since 01.04.2016
  */
-@IoConverter
+@Component
+@Qualifier("ioConverter")
 public class VehiclePassIoConverter extends AbstractIoConverter<VehiclePass, VehiclePassIo> {
 
     @Override
-    protected VehiclePassIo convert(VehiclePass source) {
-        VehiclePassIo target = new VehiclePassIo();
+    protected VehiclePassIo convert(VehiclePass source, VehiclePassIo target) {
         target.setVin(source.getVin());
         target.setModel(source.getModel());
         target.setType(source.getType());
@@ -30,8 +31,7 @@ public class VehiclePassIoConverter extends AbstractIoConverter<VehiclePass, Veh
     }
 
     @Override
-    protected VehiclePass convertBack(VehiclePassIo source) {
-        VehiclePass target = new VehiclePass();
+    protected VehiclePass convertBack(VehiclePassIo source, VehiclePass target) {
         target.setVin(source.getVin());
         target.setModel(source.getModel());
         target.setType(source.getType());
