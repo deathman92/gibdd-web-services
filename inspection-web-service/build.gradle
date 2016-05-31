@@ -12,7 +12,7 @@ apply plugin: 'org.flywaydb.flyway'
 
 war {
 	baseName = 'inspection-web-service'
-	version = '1.0.0'
+	version = "${projectVersion}"
 }
 
 springBoot {

@@ -12,7 +12,7 @@ apply plugin: 'org.flywaydb.flyway'
 
 war {
 	baseName = 'register-vehicle-web-service'
-	version = '1.0.0'
+	version = "${projectVersion}"
 }
 
 springBoot {

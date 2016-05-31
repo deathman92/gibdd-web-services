@@ -15,9 +15,10 @@ import ru.vlsu.gibdd.webservice.signature.domain.Signature;
 @CacheConfig(cacheNames = "signature")
 public interface SignatureRepository extends JpaRepository<Signature, Long> {
 
-    @Cacheable
+    @Cacheable(key = "#p0")
     Signature findByValue(String value);
+
     @Override
-    @CachePut
-    Signature save(Signature signature);
+    @CachePut(key = "#result.value")
+    <S extends Signature> S save(S signature);
 }

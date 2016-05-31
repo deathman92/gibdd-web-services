@@ -12,7 +12,7 @@ apply plugin: 'org.flywaydb.flyway'
 
 war {
     baseName = 'blacklist-check-web-service'
-    version = '1.0'
+    version = "${projectVersion}"
 }
 
 springBoot {

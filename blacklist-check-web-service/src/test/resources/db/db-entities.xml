@@ -1,0 +1,38 @@
+<dataset>
+    <Citizen id="1"
+             firstname="First"
+             middlename="Middle"
+             lastname="Last"
+             gender="other"
+             birthday="1990-01-01"
+             birthPlace="Place"
+             series="0000"
+             number="000000"
+             issueDate="2010-01-01"
+             issuedBy="Place"
+             region="Region"
+             district="District"
+             city="City"
+             address="Address"
+             date="2000-01-01"/>
+    <CitizenBlackList id="1"
+                      statusMessage="Terrorist!"
+                      record_id="1"/>
+    <CitizenBlackList id="2"
+                      statusMessage="Gangster!"
+                      record_id="1"/>
+
+    <VehiclePass id="1"
+                 vin="1234567890ABCDEFG"
+                 model="Lada"
+                 type="Sedan"
+                 category="B"
+                 builtYear="1980"
+                 engineNumber="ABC123"
+                 chassisNumber="ABC123"
+                 bodyNumber="ABC123"
+                 bodyColor="eggplant"/>
+    <VehicleBlackList id="1"
+                      statusMessage="Stolen!"
+                      record_id="1"/>
+</dataset>

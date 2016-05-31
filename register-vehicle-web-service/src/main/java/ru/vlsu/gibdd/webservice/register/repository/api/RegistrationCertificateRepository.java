@@ -17,9 +17,9 @@ import ru.vlsu.gibdd.webservice.register.domain.RegistrationCertificate;
 @CacheConfig(cacheNames = "certificate")
 public interface RegistrationCertificateRepository extends JpaRepository<RegistrationCertificate, Long> {
 
-    @Cacheable
+    @Cacheable(key = "#result.id", condition = "#result != null")
     RegistrationCertificate findByOwnerAndVehicle(Owner owner, VehiclePass vehicle);
     @Override
-    @CachePut
-    RegistrationCertificate save(RegistrationCertificate registrationCertificate);
+    @CachePut(key = "#result.id")
+    <S extends RegistrationCertificate> S save(S registrationCertificate);
 }

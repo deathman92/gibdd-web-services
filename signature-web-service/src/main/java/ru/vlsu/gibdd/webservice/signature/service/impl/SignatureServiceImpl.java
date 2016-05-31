@@ -14,6 +14,7 @@ import ru.vlsu.gibdd.webservice.signature.service.api.SignatureService;
 import java.math.BigInteger;
 import java.time.Instant;
 import java.util.Base64;
+import java.util.UUID;
 
 /**
  * @author Victor Zhivotikov
@@ -28,12 +29,16 @@ public class SignatureServiceImpl implements SignatureService {
     @Override
     @Transactional
     public GenerateSignatureResponseIo createSignature(GenerateSignatureRequestIo request) {
-        Signature signature = new Signature();
-        BigInteger hash = BigInteger.valueOf(request.hashCode() + Instant.now().hashCode());
-        signature.setValue(Base64.getEncoder().encodeToString(hash.toByteArray()));
-        signatureRepository.save(signature);
+        BigInteger hash = BigInteger.valueOf(request.hashCode());
+        String signature = UUID.nameUUIDFromBytes(hash.toByteArray()).toString();
+        Signature foundSignature = signatureRepository.findByValue(signature);
+        if (foundSignature == null) {
+            foundSignature = new Signature();
+            foundSignature.setValue(signature);
+            signatureRepository.save(foundSignature);
+        }
         GenerateSignatureResponseIo response = new GenerateSignatureResponseIo();
-        response.setSignatue(signature.getValue());
+        response.setSignatue(foundSignature.getValue());
         return response;
     }
 

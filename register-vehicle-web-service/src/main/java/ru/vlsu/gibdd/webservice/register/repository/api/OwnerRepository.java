@@ -15,6 +15,6 @@ import ru.vlsu.gibdd.webservice.register.domain.Owner;
 public interface OwnerRepository extends JpaRepository<Owner, Long>, OwnerRepositoryCustom {
 
     @Override
-    @CachePut
-    Owner save(Owner owner);
+    @CachePut(key = "#result.id")
+    <S extends Owner> S save(S owner);
 }

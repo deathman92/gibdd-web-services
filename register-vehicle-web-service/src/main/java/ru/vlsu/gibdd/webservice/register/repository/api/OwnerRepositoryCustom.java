@@ -11,6 +11,6 @@ import ru.vlsu.gibdd.webservice.register.domain.Owner;
 @CacheConfig(cacheNames = "owner")
 public interface OwnerRepositoryCustom {
 
-    @Cacheable
+    @Cacheable(key = "#result.id", condition = "#result != null")
     Owner findOwner(Owner owner);
 }
