@@ -37,7 +37,6 @@ public class RegistrationCertificateServiceImpl implements RegistrationCertifica
     @Autowired
     private RegistrationNumberService numberService;
 
-
     @Override
     @Transactional(readOnly = true)
     public FindRegistrationCertificateResponseIo findRegistrationCertificate(FindRegistrationCertificateRequestIo request) {
@@ -62,9 +61,19 @@ public class RegistrationCertificateServiceImpl implements RegistrationCertifica
     public RegisterVehicleResponseIo createRegistrationCertificate(RegisterVehicleRequestIo request) {
         RegisterVehicleResponseIo response = new RegisterVehicleResponseIo();
         Owner owner = converterService.convert(request.getCitizen(), Owner.class);
-        ownerRepository.save(owner);
+        Owner foundOwner = ownerRepository.findOwner(owner);
+        if (foundOwner == null) {
+            ownerRepository.save(owner);
+        } else {
+            owner = foundOwner;
+        }
         VehiclePass vehicle = converterService.convert(request.getVehiclePass(), VehiclePass.class);
-        vehiclePassRepository.save(vehicle);
+        VehiclePass foundVehicle = vehiclePassRepository.findByVin(vehicle.getVin());
+        if (foundVehicle == null) {
+            vehiclePassRepository.save(vehicle);
+        } else {
+            vehicle = foundVehicle;
+        }
         RegistrationCertificate certificate = new RegistrationCertificate();
         certificate.setOwner(owner);
         certificate.setVehicle(vehicle);
